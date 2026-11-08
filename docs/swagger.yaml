@@ -1,0 +1,1225 @@
+basePath: /
+definitions:
+  github_com_xavie_gastos-api_internal_dto.AuthResponse:
+    properties:
+      access_token:
+        type: string
+      expires_in:
+        example: 900
+        type: integer
+      refresh_token:
+        type: string
+      token_type:
+        example: Bearer
+        type: string
+      user:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.UserResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.AuthResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.AuthResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.BudgetRequest:
+    properties:
+      category_id:
+        example: 3
+        type: integer
+      limit_amount:
+        example: 500000
+        type: integer
+      month:
+        example: 11
+        maximum: 12
+        minimum: 1
+        type: integer
+      year:
+        example: 2026
+        maximum: 2100
+        minimum: 2000
+        type: integer
+    required:
+    - category_id
+    - limit_amount
+    - month
+    - year
+    type: object
+  github_com_xavie_gastos-api_internal_dto.BudgetResponse:
+    properties:
+      category_id:
+        example: 3
+        type: integer
+      category_name:
+        example: Alimentación
+        type: string
+      created_at:
+        type: string
+      id:
+        example: 1
+        type: integer
+      limit_amount:
+        example: 500000
+        type: integer
+      month:
+        example: 11
+        type: integer
+      percentage_used:
+        example: 85
+        type: number
+      remaining:
+        example: 75000
+        type: integer
+      spent:
+        example: 425000
+        type: integer
+      status:
+        example: warning
+        type: string
+      year:
+        example: 2026
+        type: integer
+    type: object
+  github_com_xavie_gastos-api_internal_dto.BudgetResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.BudgetsResponseDoc:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetResponse'
+        type: array
+    type: object
+  github_com_xavie_gastos-api_internal_dto.CategoriesResponseDoc:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryResponse'
+        type: array
+    type: object
+  github_com_xavie_gastos-api_internal_dto.CategoryExpense:
+    properties:
+      amount:
+        example: 125050
+        type: integer
+      category_id:
+        example: 3
+        type: integer
+      category_name:
+        example: Alimentación
+        type: string
+      percentage:
+        example: 42.35
+        type: number
+    type: object
+  github_com_xavie_gastos-api_internal_dto.CategoryRequest:
+    properties:
+      name:
+        example: Alimentación
+        maxLength: 100
+        minLength: 2
+        type: string
+      type:
+        enum:
+        - income
+        - expense
+        example: expense
+        type: string
+    required:
+    - name
+    - type
+    type: object
+  github_com_xavie_gastos-api_internal_dto.CategoryResponse:
+    properties:
+      created_at:
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Alimentación
+        type: string
+      type:
+        example: expense
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.CategoryResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.ErrorDetail:
+    properties:
+      code:
+        example: VALIDATION_ERROR
+        type: string
+      message:
+        example: el campo email es obligatorio
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.ErrorResponse:
+    properties:
+      error:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorDetail'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.HealthResponse:
+    properties:
+      checks:
+        additionalProperties:
+          type: string
+        type: object
+      status:
+        example: ok
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.HealthResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.HealthResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.LoginRequest:
+    properties:
+      email:
+        example: ana@example.com
+        type: string
+      password:
+        example: super-secret-123
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  github_com_xavie_gastos-api_internal_dto.LogoutRequest:
+    properties:
+      refresh_token:
+        example: a1b2c3...
+        type: string
+    required:
+    - refresh_token
+    type: object
+  github_com_xavie_gastos-api_internal_dto.MessageResponse:
+    properties:
+      message:
+        example: operación realizada correctamente
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.MessageResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.MessageResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.Meta:
+    properties:
+      limit:
+        example: 20
+        type: integer
+      page:
+        example: 1
+        type: integer
+      total:
+        example: 42
+        type: integer
+    type: object
+  github_com_xavie_gastos-api_internal_dto.RefreshRequest:
+    properties:
+      refresh_token:
+        example: a1b2c3...
+        type: string
+    required:
+    - refresh_token
+    type: object
+  github_com_xavie_gastos-api_internal_dto.RegisterRequest:
+    properties:
+      email:
+        example: ana@example.com
+        maxLength: 255
+        type: string
+      name:
+        example: Ana García
+        maxLength: 100
+        minLength: 2
+        type: string
+      password:
+        example: super-secret-123
+        maxLength: 72
+        minLength: 8
+        type: string
+    required:
+    - email
+    - name
+    - password
+    type: object
+  github_com_xavie_gastos-api_internal_dto.SummaryResponse:
+    properties:
+      balance:
+        example: 1249500
+        type: integer
+      by_category:
+        items:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryExpense'
+        type: array
+      month:
+        example: 11
+        type: integer
+      total_expense:
+        example: 1250500
+        type: integer
+      total_income:
+        example: 2500000
+        type: integer
+      year:
+        example: 2026
+        type: integer
+    type: object
+  github_com_xavie_gastos-api_internal_dto.SummaryResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.SummaryResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TransactionRequest:
+    properties:
+      amount:
+        example: 125050
+        type: integer
+      category_id:
+        example: 3
+        type: integer
+      date:
+        example: "2026-11-08"
+        type: string
+      description:
+        example: Compra semanal
+        maxLength: 255
+        type: string
+      type:
+        enum:
+        - income
+        - expense
+        example: expense
+        type: string
+    required:
+    - amount
+    - category_id
+    - date
+    - type
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TransactionResponse:
+    properties:
+      amount:
+        example: 125050
+        type: integer
+      category_id:
+        example: 3
+        type: integer
+      category_name:
+        example: Alimentación
+        type: string
+      created_at:
+        type: string
+      date:
+        example: "2026-11-08"
+        type: string
+      description:
+        example: Compra semanal
+        type: string
+      id:
+        example: 10
+        type: integer
+      type:
+        example: expense
+        type: string
+      updated_at:
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TransactionResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TransactionsResponseDoc:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionResponse'
+        type: array
+      meta:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.Meta'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TrendPoint:
+    properties:
+      balance:
+        example: 1249500
+        type: integer
+      expense:
+        example: 1250500
+        type: integer
+      income:
+        example: 2500000
+        type: integer
+      month:
+        example: 2026-11
+        type: string
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TrendResponse:
+    properties:
+      months:
+        example: 6
+        type: integer
+      trend:
+        items:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TrendPoint'
+        type: array
+    type: object
+  github_com_xavie_gastos-api_internal_dto.TrendResponseDoc:
+    properties:
+      data:
+        $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TrendResponse'
+    type: object
+  github_com_xavie_gastos-api_internal_dto.UserResponse:
+    properties:
+      created_at:
+        type: string
+      email:
+        example: ana@example.com
+        type: string
+      id:
+        example: 1
+        type: integer
+      name:
+        example: Ana García
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    name: Proyecto Gastos API
+    url: https://github.com/xavie/gastos-api
+  description: 'API REST para la gestión de gastos personales: autenticación con JWT
+    y refresh tokens, categorías, transacciones, presupuestos, reportes, caché Redis
+    y exportación CSV. Los importes se expresan en centavos.'
+  title: Gastos API
+  version: "1.0"
+paths:
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Valida email y contraseña y devuelve un par de tokens.
+      parameters:
+      - description: Credenciales
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.LoginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.AuthResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      summary: Iniciar sesión
+      tags:
+      - Auth
+  /api/v1/auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: Revoca el refresh token indicado. La operación es idempotente.
+      parameters:
+      - description: Refresh token a revocar
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.LogoutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.MessageResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      summary: Cerrar sesión
+      tags:
+      - Auth
+  /api/v1/auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: 'Rota el refresh token: lo revoca y devuelve un par nuevo. Reutilizar
+        un token revocado responde 401.'
+      parameters:
+      - description: Refresh token vigente
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.RefreshRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.AuthResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      summary: Renovar tokens
+      tags:
+      - Auth
+  /api/v1/auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Crea una cuenta y devuelve un par de tokens (access + refresh).
+      parameters:
+      - description: Datos de registro
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.RegisterRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.AuthResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      summary: Registrar usuario
+      tags:
+      - Auth
+  /api/v1/budgets:
+    get:
+      description: Devuelve los presupuestos con spent, remaining, percentage_used
+        y status.
+      parameters:
+      - description: Mes (1-12)
+        in: query
+        name: month
+        type: integer
+      - description: Año (2000-2100)
+        in: query
+        name: year
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetsResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Listar presupuestos
+      tags:
+      - Presupuestos
+    post:
+      consumes:
+      - application/json
+      description: Crea un límite mensual para una categoría de gasto.
+      parameters:
+      - description: Datos del presupuesto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Crear presupuesto
+      tags:
+      - Presupuestos
+  /api/v1/budgets/{id}:
+    delete:
+      description: Elimina un presupuesto del usuario autenticado.
+      parameters:
+      - description: ID del presupuesto
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.MessageResponseDoc'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Eliminar presupuesto
+      tags:
+      - Presupuestos
+    put:
+      consumes:
+      - application/json
+      description: Modifica un presupuesto existente del usuario.
+      parameters:
+      - description: ID del presupuesto
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Datos actualizados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.BudgetResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Actualizar presupuesto
+      tags:
+      - Presupuestos
+  /api/v1/categories:
+    get:
+      description: Devuelve las categorías del usuario autenticado.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoriesResponseDoc'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Listar categorías
+      tags:
+      - Categorías
+    post:
+      consumes:
+      - application/json
+      description: Crea una categoría de tipo income o expense para el usuario autenticado.
+      parameters:
+      - description: Datos de la categoría
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Crear categoría
+      tags:
+      - Categorías
+  /api/v1/categories/{id}:
+    delete:
+      description: Elimina una categoría. Responde 409 si tiene transacciones asociadas.
+      parameters:
+      - description: ID de la categoría
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.MessageResponseDoc'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Eliminar categoría
+      tags:
+      - Categorías
+    put:
+      consumes:
+      - application/json
+      description: Modifica el nombre o el tipo de una categoría del usuario.
+      parameters:
+      - description: ID de la categoría
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Datos actualizados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.CategoryResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Actualizar categoría
+      tags:
+      - Categorías
+  /api/v1/reports/summary:
+    get:
+      description: Totales de ingresos, gastos, balance y gasto agrupado por categoría.
+        Si no se envían month/year se usa el mes actual.
+      parameters:
+      - description: Mes (1-12)
+        in: query
+        name: month
+        type: integer
+      - description: Año (2000-2100)
+        in: query
+        name: year
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.SummaryResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Resumen mensual
+      tags:
+      - Reportes
+  /api/v1/reports/trend:
+    get:
+      description: Ingresos, gastos y balance de cada uno de los últimos N meses (6
+        por defecto).
+      parameters:
+      - description: Cantidad de meses (1-24, por defecto 6)
+        in: query
+        name: months
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TrendResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Tendencia mensual
+      tags:
+      - Reportes
+  /api/v1/transactions:
+    get:
+      description: Devuelve transacciones paginadas del usuario con filtros opcionales.
+      parameters:
+      - description: Fecha inicial (YYYY-MM-DD)
+        in: query
+        name: from
+        type: string
+      - description: Fecha final (YYYY-MM-DD)
+        in: query
+        name: to
+        type: string
+      - description: ID de categoría
+        in: query
+        name: category_id
+        type: integer
+      - description: Tipo de movimiento
+        enum:
+        - income
+        - expense
+        in: query
+        name: type
+        type: string
+      - description: Monto mínimo en centavos
+        in: query
+        name: min_amount
+        type: integer
+      - description: Monto máximo en centavos
+        in: query
+        name: max_amount
+        type: integer
+      - description: Página (por defecto 1)
+        in: query
+        name: page
+        type: integer
+      - description: Tamaño de página (por defecto 20, máximo 100)
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionsResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Listar transacciones
+      tags:
+      - Transacciones
+    post:
+      consumes:
+      - application/json
+      description: Registra un ingreso o gasto. El tipo debe coincidir con el de la
+        categoría.
+      parameters:
+      - description: Datos de la transacción
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Crear transacción
+      tags:
+      - Transacciones
+  /api/v1/transactions/{id}:
+    delete:
+      description: Elimina una transacción del usuario autenticado.
+      parameters:
+      - description: ID de la transacción
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.MessageResponseDoc'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Eliminar transacción
+      tags:
+      - Transacciones
+    get:
+      description: Devuelve una transacción del usuario autenticado.
+      parameters:
+      - description: ID de la transacción
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionResponseDoc'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Obtener transacción
+      tags:
+      - Transacciones
+    put:
+      consumes:
+      - application/json
+      description: Modifica una transacción existente del usuario autenticado.
+      parameters:
+      - description: ID de la transacción
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Datos actualizados
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.TransactionResponseDoc'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Actualizar transacción
+      tags:
+      - Transacciones
+  /api/v1/transactions/export:
+    get:
+      description: Descarga un CSV con las transacciones que cumplen los mismos filtros
+        del listado.
+      parameters:
+      - description: Fecha inicial (YYYY-MM-DD)
+        in: query
+        name: from
+        type: string
+      - description: Fecha final (YYYY-MM-DD)
+        in: query
+        name: to
+        type: string
+      - description: ID de categoría
+        in: query
+        name: category_id
+        type: integer
+      - description: Tipo de movimiento
+        enum:
+        - income
+        - expense
+        in: query
+        name: type
+        type: string
+      - description: Monto mínimo en centavos
+        in: query
+        name: min_amount
+        type: integer
+      - description: Monto máximo en centavos
+        in: query
+        name: max_amount
+        type: integer
+      produces:
+      - text/csv
+      responses:
+        "200":
+          description: Archivo CSV
+          schema:
+            type: file
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.ErrorResponse'
+      security:
+      - BearerAuth: []
+      summary: Exportar transacciones
+      tags:
+      - Transacciones
+  /health:
+    get:
+      description: Comprueba SQLite y, si está configurado, Redis. No requiere autenticación.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.HealthResponseDoc'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/github_com_xavie_gastos-api_internal_dto.HealthResponseDoc'
+      summary: Estado de la API
+      tags:
+      - Sistema
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: Escribe "Bearer <access_token>" para probar las rutas protegidas.
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

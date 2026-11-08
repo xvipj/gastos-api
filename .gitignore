@@ -1,0 +1,28 @@
+# Variables de entorno y secretos
+.env
+.env.local
+.env.*.local
+
+# Bases de datos SQLite
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Binarios y artefactos de compilación
+/bin/
+/dist/
+*.exe
+*.out
+coverage.out
+coverage.html
+
+# Configuración de editores e IDE
+.idea/
+.vscode/
+*.swp
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
